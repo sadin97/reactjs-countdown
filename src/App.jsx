@@ -13,7 +13,11 @@ class App extends Component {
   }
 
   changeDeadline () {
+    if (Date.parse(this.state.newDeadline) - Date.parse(new Date()) < 0) {
+      alert('That day passed away.');
+    } else {
       this.setState({deadline: this.state.newDeadline});
+    }
   }
 
   render () {

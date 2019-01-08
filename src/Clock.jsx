@@ -29,12 +29,16 @@ class Clock extends Component {
   }
 
   getTimeUntil (deadline) {
-    const time = Date.parse(deadline) - Date.parse(new Date());
-    const seconds = Math.floor((time/1000) % 60);
-    const minutes = Math.floor((time/1000/60) % 60);
-    const hours = Math.floor(time/(1000*60*60) % 24);
-    const days = Math.floor(time/(1000*60*60*24));
-    this.setState({days, hours, minutes, seconds});
+    if (Date.parse(deadline) - Date.parse(new Date()) < 0) {
+      alert('That day passed away.');
+    } else {
+      const time = Date.parse(deadline) - Date.parse(new Date());
+      const seconds = Math.floor((time/1000) % 60);
+      const minutes = Math.floor((time/1000/60) % 60);
+      const hours = Math.floor(time/(1000*60*60) % 24);
+      const days = Math.floor(time/(1000*60*60*24));
+      this.setState({days, hours, minutes, seconds});
+    }
   }
 
   render () {
